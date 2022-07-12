@@ -1,5 +1,16 @@
-const marvinOne ='x';
-const marvinTwo ='o';
+const playerOne ='x';
+const playerTwo ='o';
+
+const possibleWins =[
+  [0,1,2],
+  [3,4,5],
+  [6,7,8],
+  [0,3,6],
+  [1,4,7],
+  [2,5,8],
+  [0,4,8],
+  [2,4,6]
+]
 
 
 
@@ -12,8 +23,8 @@ let P2_Turn = false;
 const startGame = () => {
   P2_Turn = false;
   boxes.forEach((box => {
-    box.classList.remove(marvinTwo);
-    box.classList.remove(marvinOne);
+    box.classList.remove(playerTwo);
+    box.classList.remove(playerOne);
     box.addEventListener('click', handleClick, {once : true})
   }))
   console.log('started')
@@ -23,10 +34,12 @@ const startGame = () => {
 
 const handleClick = (e) => {
   const box = e.target;
-  var currentPlayer = P2_Turn ? marvinTwo : marvinOne;
-  
+  var currentPlayer = P2_Turn ? playerTwo : playerOne;
 
   play(box, currentPlayer);
+
+
+
   changePlayer();
   
 
@@ -38,6 +51,14 @@ const play = (box, currentPlayer ) => {
 
 const changePlayer = () => {
   P2_Turn = !P2_Turn;
+}
+
+const checkWin  = (currentPlayer) => {
+  return possibleWins.some(combination => {
+    return combination.every(index => {
+      return boxes[index].classList.contains(currentPlayer);
+    })
+  })
 }
 
 startButton.addEventListener('click', startGame);

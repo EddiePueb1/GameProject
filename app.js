@@ -12,12 +12,12 @@ const possibleWins =[
   [2,4,6]
 ]
 
-
+var draw = 0;
 
 const startButton = document.getElementById('startButton');
 const board = document.getElementById('board');
 const boxes = document.querySelectorAll('[boxes]');
-const player = document.querySelectorAll('.player')
+const player = document.querySelectorAll('player')
 let P2_Turn = false;
 
 
@@ -26,14 +26,17 @@ const startGame = () => {
   boxes.forEach((box => {
     box.classList.remove(playerTwo);
     box.classList.remove(playerOne);
-    box.addEventListener('click', handleClick, {once : true})
+    box.addEventListener('click', handleClicks, {once : true})
   }))
   console.log('started')
+
+  draw = 0;
+
 
    
 }
 
-const handleClick = (e) => {
+const handleClicks = (e) => {
   const box = e.target;
   var currentPlayer = P2_Turn ? playerTwo : playerOne;
 
@@ -42,11 +45,20 @@ const handleClick = (e) => {
   console.log(box)
   if (checkWin(currentPlayer)) {
     console.log(`${currentPlayer} wins`);
-  } else 
-
+    stopInput();
+  } else if (checkDraw()) {
+    console.log('draw')
+    stopInput();
+  } 
   changePlayer();
   
 
+}
+
+const stopInput = () => {
+  boxes.forEach(box => {
+    box.removeEventListener('click', handleClicks);
+  })
 }
 
 const play = (box, currentPlayer ) => {
@@ -56,6 +68,8 @@ const play = (box, currentPlayer ) => {
   player.classList.add('player')
   player.classList.add(currentPlayer)
   box.appendChild(player)
+
+  draw++;
 }
 
 const changePlayer = () => {
@@ -71,6 +85,10 @@ const checkWin  = (currentPlayer) => {
 }
 
 const checkDraw = () => {
+  return (draw ===  9) ? true : false;
+}
+
+const displayText = () => {
   
 }
 

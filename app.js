@@ -17,6 +17,7 @@ const possibleWins =[
 const startButton = document.getElementById('startButton');
 const board = document.getElementById('board');
 const boxes = document.querySelectorAll('[boxes]');
+const player = document.querySelectorAll('.player')
 let P2_Turn = false;
 
 
@@ -38,7 +39,10 @@ const handleClick = (e) => {
 
   play(box, currentPlayer);
 
-
+  console.log(box)
+  if (checkWin(currentPlayer)) {
+    console.log(`${currentPlayer} wins`);
+  } else 
 
   changePlayer();
   
@@ -46,7 +50,12 @@ const handleClick = (e) => {
 }
 
 const play = (box, currentPlayer ) => {
-  box.classList.add(currentPlayer);
+
+  // box.classList.add(currentPlayer);
+  var player = document.createElement('div');
+  player.classList.add('player')
+  player.classList.add(currentPlayer)
+  box.appendChild(player)
 }
 
 const changePlayer = () => {
@@ -59,6 +68,10 @@ const checkWin  = (currentPlayer) => {
       return boxes[index].classList.contains(currentPlayer);
     })
   })
+}
+
+const checkDraw = () => {
+  
 }
 
 startButton.addEventListener('click', startGame);

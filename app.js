@@ -63,7 +63,7 @@ const stopInput = () => {
 
 const play = (box, currentPlayer ) => {
 
-  // box.classList.add(currentPlayer);
+  box.classList.add(currentPlayer);
   var player = document.createElement('div');
   player.classList.add('player')
   player.classList.add(currentPlayer)

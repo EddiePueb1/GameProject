@@ -1,5 +1,5 @@
-const playerOne ='x';
-const playerTwo ='o';
+const playerOne ='X';
+const playerTwo ='O';
 
 const possibleWins =[
   [0,1,2],
@@ -17,7 +17,7 @@ var draw = 0;
 const startButton = document.getElementById('startButton');
 const board = document.getElementById('board');
 const boxes = document.querySelectorAll('[boxes]');
-const player = document.querySelectorAll('player')
+const player = document.querySelector('.player')
 let P2_Turn = false;
 
 
@@ -31,6 +31,7 @@ const startGame = () => {
   console.log('started')
 
   draw = 0;
+  displayText();
 
 
    
@@ -39,18 +40,20 @@ const startGame = () => {
 const handleClicks = (e) => {
   const box = e.target;
   var currentPlayer = P2_Turn ? playerTwo : playerOne;
-
+  displayText();
   play(box, currentPlayer);
 
   console.log(box)
   if (checkWin(currentPlayer)) {
-    console.log(`${currentPlayer} wins`);
+    player.innerHTML = `${currentPlayer} WINS!!!!`
     stopInput();
   } else if (checkDraw()) {
-    console.log('draw')
+    player.innerHTML = "It's a Draw"
     stopInput();
   } 
+
   changePlayer();
+
   
 
 }
@@ -89,7 +92,9 @@ const checkDraw = () => {
 }
 
 const displayText = () => {
-  
+  var plays = P2_Turn ? playerTwo : playerOne;
+  player.innerHTML = `${plays}'s turn`;
+
 }
 
 startButton.addEventListener('click', startGame);

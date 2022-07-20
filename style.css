@@ -1,7 +1,8 @@
 *{
   padding: 0;
   margin: 0;
-  
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  color:teal;
 }
 
 body {
@@ -9,6 +10,15 @@ body {
   flex-direction: column;
 }
 
+
+.title {
+  text-align: center;
+  color: teal;
+}
+
+.player {
+  text-align: center;
+}
 .board {
 	width: 100vw;
 	height: 100vh;
@@ -32,8 +42,8 @@ body {
 	cursor: pointer;
 }
 
-.x > div:before,
-.x > div:after{
+.X > div:before,
+.X > div:after{
   content: '';
   position: absolute;
   left: -1px;
@@ -45,14 +55,19 @@ body {
 }
 
 
- .x > div:after {
+ .X > div:after {
   transform: rotate(135deg);
  }
 
-.o {
+.O {
   background-color: blue;
   border-radius: 50%;
   -webkit-mask: radial-gradient(transparent 89px, #000, 90px);
       mask: radial-gradient(transparent 89px, #000, 90px);
 }
 
+button{
+  width: 100%;
+  font-size: larger;
+  display: inline;
+}

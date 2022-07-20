@@ -8,6 +8,7 @@ body {
   display: flex;
   flex-direction: column;
 }
+
 .board {
 	width: 100vw;
 	height: 100vh;
@@ -31,15 +32,22 @@ body {
 	cursor: pointer;
 }
 
-.x {
-  background-color: teal;
+.x > div:before,
+.x > div:after{
+  content: '';
+  position: absolute;
+  left: -1px;
+  z-index: 1;
+  background: teal;
+  width: 100%;
+  height: 20%;
+  transform: rotate(45deg);
 }
 
-.x::after {
-  
-}
 
- 
+ .x > div:after {
+  transform: rotate(135deg);
+ }
 
 .o {
   background-color: blue;
